@@ -479,10 +479,12 @@
             overflow: hidden;
         }
  
-        .certificate-item embed {
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+        .certificate-item img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 8px; 
+            display: block; 
         }
  
         .certificate-item span {
@@ -777,13 +779,13 @@
             <div class="certificate-grid">
                 <div class="certificate-item">
                     <a href="cert1.pdf" target="_blank" rel="noopener">
-                        <embed src="cert1.pdf" type="application/pdf">
+                        <img src="cert1.png" alt="CCNA Introduction to Network certificate">
                     </a>
                     <span>CCNA Introduction to Network</span>
                 </div>
                 <div class="certificate-item">
                     <a href="cert2.pdf" target="_blank" rel="noopener">
-                        <embed src="cert2.pdf" type="application/pdf">
+                        <img src="cert2.png" alt="Claude Hackathon Participation certificate">
                     </a>
                     <span>Claude Hackathon Particptaion</span>
                 </div>
