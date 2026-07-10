@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+ 
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #05080a;
+            background-image: url('image/bg.png');
+            background-size: cover;
+        }
+ 
+        .header {
+            overflow: hidden;
+            background-color: #0a0f0d;
+            padding: 20px 10px;
+            display: flex;
+            align-items: center;
+        }
+ 
+        .header a {
+            float: left;
+            color: #9aa5a3;
+            text-align: center;
+            padding: 12px 16px;
+            text-decoration: none;
+            font-size: 16px;
+            font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+            border-radius: 999px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+ 
+        .header a.logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+        }
+ 
+        .header a:not(.logo):not(.connect):hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: white;
+        }
+ 
+        .header a.connect {
+            color: #38b6ff;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+ 
+        .header a.connect:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+ 
+        .nav {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+ 
+        main {
+            display: flex;
+            justify-content: center;
+            padding: 60px 20px;
+            font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+            font-size: 16px;
+        }
+ 
+        #profile {
+            border-radius: 25px;
+            border: 1px solid #868a88;
+            background-color: #0a0f0d;
+            color: white;
+            padding: 40px;
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+ 
+        .profile-info h1 {
+            margin: 0 0 8px 0;
+            font-size: 1.8em;
+        }
+ 
+        .profile-info p {
+            margin: 0 0 12px 0;
+        }
+ 
+        .auto-input {
+            color: #38b6ff;
+        }
+ 
+        .profile-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            min-width: 220px;
+        }
+ 
+        .profile-actions a.cv-button {
+            border: 1px solid #ffffff;
+            background: transparent;
+            color: #9aa5a3;
+            padding: 14px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+ 
+        .profile-actions a.cv-button:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+ 
+        .grade-block {
+            border: 1px solid #ffffff;
+            border-radius: 8px;
+            padding: 14px 18px;
+        }
+ 
+        .grade-label {
+            display: block;
+            color: #9aa5a3;
+            margin-bottom: 4px;
+        }
+ 
+        .grade-value {
+            display: block;
+            font-weight: bold;
+        }
+ 
+        @media (max-width: 700px) {
+            #profile {
+                flex-direction: column;
+            }
+ 
+            .profile-actions {
+                width: 100%;
+            }
+        }
+ 
+       #contact {
+            display: flex;
+            justify-content: center;
+            padding: 20px 20px 60px;
+            font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+        }
+ 
+        .contact-info h1 {
+            margin: 0 0 8px 0;
+            font-size: 1.8em;
+        }
+ 
+        .contact-info p {
+            margin: 0 0 12px 0;
+        }
+ 
+        .contact-info {
+            border-radius: 25px;
+            border: 1px solid #868a88;
+            background-color: #0a0f0d;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            width: 100%;
+            max-width: 1100px;
+        }
+ 
+        .contact-info>p {
+            text-align: left;
+            margin: 0;
+            color:#38b6ff;
+        }
+ 
+        .contact-info>h1 {
+            text-align: center;
+            margin: 0;
+        }
+ 
+        .contact-links {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 16px;
+            width: 100%;
+        }
+ 
+        .contact-links a.link-button {
+            border: 1px solid #ffffff;
+            background: transparent;
+            color: #9aa5a3;
+            padding: 14px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex: 1 1 0;
+            white-space: nowrap;
+        }
+ 
+        .contact-links a.link-button:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+        } 
+ 
+        .contact-links a.link-button svg {
+            flex-shrink: 0;
+        }
+ 
+        @media (max-width: 700px) {
+            .contact-links {
+                flex-direction: column;
+                flex-wrap: wrap;
+            }
+        }
+
+        #education {
+            display: flex;
+            justify-content: center;
+            padding: 20px 20px 60px;
+            font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+        }
+ 
+        .education-info {
+            border-radius: 25px;
+            border: 1px solid #868a88;
+            background-color: #0a0f0d;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            width: 100%;
+            max-width: 1100px;
+        }
+ 
+        .education-info h1 {
+            margin: 0 0 8px 0;
+            font-size: 1.8em;
+        }
+ 
+        .education-info p {
+            margin: 0 0 12px 0;
+        }
+ 
+        .education-info > p {
+            text-align: left;
+            margin: 0;
+            color: #38b6ff;
+        }
+ 
+        .education-slider {
+            position: relative;
+            width: 100%;
+            padding: 0 56px;
+        }
+ 
+        .education-slides {
+            width: 100%;
+        }
+ 
+        .education-slide {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+        }
+ 
+        .education-slide.active {
+            display: flex;
+        }
+ 
+        .education-slide ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+ 
+        .education-slide li {
+            margin-bottom: 4px;
+        }
+
+        .edu-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #ffffff;
+            background-color: #0a0f0d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease, opacity 0.2s ease;
+            z-index: 2;
+            padding: 0;
+        }
+ 
+        .edu-nav:hover:not(:disabled) {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+ 
+        .edu-nav:disabled {
+            opacity: 0.25;
+            cursor: default;
+        }
+ 
+        .edu-nav-prev {
+            left: 0;
+        }
+ 
+        .edu-nav-next {
+            right: 0;
+        }
+ 
+        .education-blocks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            width: 100%;
+        }
+ 
+        .education-block {
+            border: 1px solid #ffffff1b;
+            border-radius: 8px;
+            padding: 14px 18px;
+            flex: 1 1 0;
+            min-width: 110px;
+            text-align: center;
+        }
+ 
+        .education-label {
+            display: block;
+            color: #9aa5a3;
+        }
+ 
+        @media (max-width: 700px) {
+            .education-slider {
+                padding: 0 44px;
+            }
+ 
+            .edu-nav {
+                width: 34px;
+                height: 34px;
+            }
+ 
+            .education-block {
+                flex: 1 1 calc(50% - 12px);
+            }
+        }
+
+         #project {
+            display: flex;
+            justify-content: center;
+            padding: 20px 20px 60px;
+            font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+        }
+ 
+        .project-info h1 {
+            margin: 0 0 8px 0;
+            font-size: 1.8em;
+        }
+ 
+        .project-info {
+            border-radius: 25px;
+            border: 1px solid #868a88;
+            background-color: #0a0f0d;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            width: 100%;
+            max-width: 1100px;
+        }
+ 
+        .project-info>p {
+            text-align: left;
+            margin: 0;
+            color:#38b6ff;
+        }
+ 
+        .project-design>h1 {
+            text-align: center;
+            margin: 0;
+        }
+        
+        .project-design>p {
+            text-align: center;
+            margin: 0;
+        }
+
+        #certificate {
+            display: flex;
+            justify-content: center;
+            padding: 20px 20px 60px;
+            font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+        }
+ 
+        .certificate-info h1 {
+            margin: 0 0 8px 0;
+            font-size: 1.8em;
+        }
+ 
+        .certificate-info {
+            border-radius: 25px;
+            border: 1px solid #868a88;
+            background-color: #0a0f0d;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            width: 100%;
+            max-width: 1100px;
+        }
+ 
+        .certificate-info>p {
+            text-align: left;
+            margin: 0;
+            color:#38b6ff;
+        }
+ 
+        .certificate-design>h1 {
+            text-align: center;
+            margin: 0;
+        }
+        
+        .certificate-design>p {
+            text-align: center;
+            margin: 0 0 16px 0;
+        }
+ 
+        .certificate-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+ 
+        .certificate-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+ 
+        .certificate-item a {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            aspect-ratio: 4 / 3;
+            text-decoration: none;
+            overflow: hidden;
+        }
+ 
+        .certificate-item embed {
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+ 
+        .certificate-item span {
+            color: #9aa5a3;
+            font-weight: bold;
+            text-align: center;
+        }
+ 
+        @media (max-width: 900px) {
+            .certificate-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+ 
+        @media (max-width: 500px) {
+            .certificate-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        #experience {
+            display: flex;
+            justify-content: center;
+            padding: 20px 20px 60px;
+            font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+        }
+ 
+        .experience-info h1 {
+            margin: 0 0 8px 0;
+            font-size: 1.8em;
+        }
+ 
+        .experience-info {
+            border-radius: 25px;
+            border: 1px solid #868a88;
+            background-color: #0a0f0d;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            width: 100%;
+            max-width: 1100px;
+        }
+ 
+        .experience-info>p {
+            text-align: left;
+            margin: 0;
+            color:#38b6ff;
+        }
+ 
+        .experience-design>h1 {
+            text-align: center;
+            margin: 0;
+        }
+        
+        .experience-design>p {
+            text-align: center;
+            margin: 0;
+        }
+ 
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-height: 420px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+ 
+        .experience-item {
+            border: 1px solid #ffffff1b;
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+ 
+        .experience-item h1 {
+            font-size: 1.1em;
+            margin: 0 0 4px 0;
+        }
+ 
+        .experience-item p {
+            margin: 0 0 8px 0;
+        }
+ 
+        .experience-date {
+            color: #9aa5a3;
+        }
+ 
+        .experience-list::-webkit-scrollbar {
+            width: 8px;
+        }
+ 
+        .experience-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+ 
+        .experience-list::-webkit-scrollbar-thumb {
+            background-color: #868a88;
+            border-radius: 4px;
+        }
+
+        #backtotop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid #ffffff;
+            background-color: #0a0f0d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+            z-index: 100;
+        }
+ 
+        #backtotop.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+ 
+        #backtotop:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="header">
+            <a class="logo" href="#profile">Dan#NetSec</a>
+            <div class="nav">
+                <a href="#projects"> >projects</a>
+                <a href="#education"> >education</a>
+                <a href="#experience"> >experience</a>
+                <a href="#certificate"> >certificate</a>
+                <a class="connect" href="#contact"> #contact</a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div id="profile" class="reveal">
+            <div class="profile_info">
+                <h1> Daniel Morosan</h1>
+                <p><span class="auto-input"></span></p>
+                <p> An Enthusiast Cyber Security Student. Learning to improve my Network and Cyber Security skills from
+                    the univeristy.
+                    I am currently learning the introduction of Network, Python, SQL, HMTL and CSS. Which can be used in
+                    the future career and education.
+                </p>
+                <P> BUILD, PROTECT, DEFEND</P>
+            </div>
+            <div class="profile-actions">
+                <div class="grade-block">
+                    <span class="grade-label">1st Year Grade:</span>
+                    <span class="grade-value">First Class</span>
+                </div>
+                <div class="grade-block">
+                    <span class="grade-label">Six Form Grade:</span>
+                    <span class="grade-value">MMM</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <section id="project" class="reveal">
+        <div class="project-info">
+            <p>#project</p>
+            <div class="project-design">
+                <h1>Project's that has been completed</h1>
+                <p>Upcoming</p>
+            </div>
+        </div>
+    </section>
+    <section id="education" class="reveal">
+        <div class="education-info">
+            <p>#education</p>
+            <div class="education-slider">
+                <button class="edu-nav edu-nav-prev" id="eduPrev" aria-label="Previous education" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+                    </svg>
+                </button>
+                <div class="education-slides" id="eduSlides">
+                    <div class="education-slide active">
+                        <h1>1st Year of University</h1>
+                        <p>2025 -> Current</p>
+                        <ul>
+                            <li>Computational Thinking | 57%</li>
+                            <li>Computating Fundamental | 77%</li>
+                            <li>Introduction to Network and Cyber Security | 72%</li>
+                            <li>Computers & Society | 78%</li>
+                            <li>Data Fundamental | 62%</li>
+                            <li>Programming | 82%</li>
+                        </ul>
+                        <p>
+                            I have recieved 71% for the 1st Year of my course in Network and Cyber Security. In
+                            which, i have learned the basic of computing and networking. I had the opportunity to
+                            meet the professor and classmate to which I have learned so much in my course. I will
+                            use that learning for the next year.
+                        </p>
+                        <div class="education-blocks">
+                            <div class="education-block"><span class="education-label">SQL</span></div>
+                            <div class="education-block"><span class="education-label">HTML</span></div>
+                            <div class="education-block"><span class="education-label">TCP/IP</span></div>
+                            <div class="education-block"><span class="education-label">WAN/LAN</span></div>
+                            <div class="education-block"><span class="education-label">PYTHON</span></div>
+                            <div class="education-block"><span class="education-label">WIREFRAME</span></div>
+                            <div class="education-block"><span class="education-label">NETWORK</span></div>
+                        </div>
+                    </div>
+                    <div class="education-slide">
+                        <h1>St Mary Six Form</h1>
+                        <p>2023 -> 2025</p>
+                        <ul>
+                            <li>Level 3 Information and Technology | Merit</li>
+                            <li>Level 3 Combined Science | Merit</li>
+                            <li>Level 3 Business | Merit</li>
+                        </ul>
+                        <p>
+                            I .
+                        </p>
+                        <div class="education-blocks">
+                            <div class="education-block"><span class="education-label">WIREFRAME</span></div>
+                            <div class="education-block"><span class="education-label">DATABASE</span></div>
+                            <div class="education-block"><span class="education-label">EXCEL</span></div>
+                            <div class="education-block"><span class="education-label">WEBSITE</span></div>
+                            <div class="education-block"><span class="education-label">RESEARCH</span></div>
+                            <div class="education-block"><span class="education-label">FIBRE OPTICS</span></div>
+                        </div>
+                    </div>
+                    <div class="education-slide">
+                        <h1>St Mary Catholic School</h1>
+                        <p>2018 -> 2023</p>
+                        <ul>
+                            <li>English Language | Grade 4</li>
+                            <li>Foundation Maths | Grade 4</li>
+                            <li>Foundation Science | Grade 44</li>
+                            <li>Business | Level 2 Pass</li>
+                            <li>Information and Technology  | Level 2 Pass</li>
+                        </ul>
+                        <p>
+                          I was able to the pass the required GCSE exams, which was able to provide me the necessary grades to futher allow me to head to six form to complete my level 3.
+                        </p>
+                    </div>
+                </div>
+                <button class="edu-nav edu-nav-next" id="eduNext" aria-label="Next education">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                    </svg>
+                </button>
+ 
+            </div>
+        </div>
+    </section>
+   <section id="experience" class="reveal">
+        <div class="experience-info">
+            <p>#experience</p>
+            <div class="experience-design">
+                <h1>Work Experience</h1>
+                <p>A record of the roles I've held so far.</p>
+            </div>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <h1>Leaflet for Living North</h1>
+                    <p class="experience-date">April - May 2026</p>
+                    <p>I have distributed Leaflet and tickets for the 2026 event for Living North. My role is to distrubet the leaflet in area of gosforth that was provided by manager who provided me the area on a map to complete for the opening event.</p>
+                </div>
+                <div class="experience-item">
+                    <h1>Ashburton Village Store</h1>
+                    <p class="experience-date">2018 - 2023</p>
+                    <p>In this role, I ensured the timely delivery of newspapers to numerous streets six mornings per week, all while maintaining my school commitments. My key responsibilities included ensuring delivery to the correct houses, arriving punctually to work each morning, and minimising loss of/delivery of incorrect stock.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="certificate" class="reveal">
+        <div class="certificate-info">
+            <p>#certificate</p>
+            <div class="certificate-design">
+                <h1>Achievements</h1>
+                <p>Every certificate is like a reward. Which i am proud off.</p>
+            </div>
+            <div class="certificate-grid">
+                <div class="certificate-item">
+                    <a href="certificate/cert1.pdf" target="_blank" rel="noopener">
+                        <embed src="certificate/cert1.pdf" type="application/pdf">
+                    </a>
+                    <span>CCNA Introduction to Network</span>
+                </div>
+                <div class="certificate-item">
+                    <a href="certificate/cert2.pdf" target="_blank" rel="noopener">
+                        <embed src="certificate/cert2.pdf" type="application/pdf">
+                    </a>
+                    <span>Claude Hackathon Particptaion</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="reveal">
+        <div class="contact-info">
+            <p>#Contact</p>
+            <h1> Let's Connect </h1>
+            <div class="contact-links">
+                <a href="mailto:danielmorosan07@gmail.com" class="link-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
+                        <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671" />
+                        <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791" />
+                    </svg>
+                    Email
+                </a>
+                <a href="https://www.linkedin.com/in/daniel-morosan-9b4324375/" class="link-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-linkedin" viewBox="0 0 16 16">
+                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
+                    </svg>
+                    Linkedin
+                </a>
+                <a href="https://github.com/DM7A" class="link-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-github" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                    </svg>
+                    Github
+                </a>
+                <a href="https://tryhackme.com/p/DM7A" class="link-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-shield-shaded" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 14.933a1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56" />
+                    </svg>
+                    Tryhackme
+                </a>
+                <a href="https://coddy.tech/refer?ref=p7XEPWEeBnXE" class="link-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-code-slash" viewBox="0 0 16 16">
+                        <path
+                            d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0m6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0" />
+                    </svg>
+                    Coddytech
+                </a>
+        </div>
+    </section>
+    <button id="backtotop" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
+        </svg>
+    </button>
+    <script src="https://unpkg.com/typed.js@3.0.0/dist/typed.umd.js"></script>
+    <script>
+        var typed = new Typed(".auto-input", {
+            strings: ["Network and Cyber Security Student", "Aspiring Network Security Engineer"],
+            typeSpeed: 100,
+            backSpeed: 100,
+            loop: true
+        });
+
+        var eduSlides = document.getElementById('eduSlides');
+        var eduSlideEls = eduSlides.children;
+        var eduPrev = document.getElementById('eduPrev');
+        var eduNext = document.getElementById('eduNext');
+        var eduTotal = eduSlideEls.length;
+        var eduIndex = 0;
+        function goToEduSlide(index) {
+            eduIndex = Math.max(0, Math.min(index, eduTotal - 1));
+            for (var i = 0; i < eduTotal; i++) {
+                eduSlideEls[i].classList.toggle('active', i === eduIndex);
+            }
+            eduPrev.disabled = eduIndex === 0;
+            eduNext.disabled = eduIndex === eduTotal - 1;
+        }
+        eduPrev.addEventListener('click', function () { goToEduSlide(eduIndex - 1); });
+        eduNext.addEventListener('click', function () { goToEduSlide(eduIndex + 1); });
+        goToEduSlide(0);
+
+         var btp = document.getElementById('backtotop');
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 400) {
+                btp.classList.add('show');
+            } else {
+                btp.classList.remove('show');
+            }
+        });
+        btp.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+    </script>
+</body>
+</html>
